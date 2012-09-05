@@ -17,41 +17,41 @@
 \begin{normalsize}
 به نام خدا
 \end{normalsize}
-\\[4cm]
-اصول و مبانی خطایابی نحوی
+\\[2cm]
+بررسی مقاله
+\\[2cm]
+دنبال کردن بلادرنگ دوربین توسط نشانه‌های زمین‌های ورزشی
 }
-\author{علیرضا نوریان
+\author{یاسر سوری
 \\
-\\ \small دانشگاه علم و صنعت ایران
-\\ \small noorian@comp.iust.ac.ir
+\\ \small دانشگاه صنعتی شریف
+\\ \small souri@ce.sharif.edu
 }
 \begin{document}
 \maketitle
 %\begin{textblock*}{15cm}(0cm,-9cm)\centering به نام خدا \end{textblock*}
 
-\tableofcontents
-
 \begin{abstract}
-نحو\LTRfootnote{Syntax} جمله بسیار با اهمیت و البته خطاپذیر است. در این پژوهش ابتدا تجزیه‌ی نحوی که تقریبا اساس همه‌ی روشهای خطایابی نحوی است، مرور خواهد شد و در ادامه جایگاه خطایابی نحوی و روشهای انجام آن خواهند آمد. در پایان نیز  تعدادی از سامانه‌هایی که برای انجام خطایابی نحوی در زبانهای مخلتف طراحی شده‌اند، با توضیح مختصر، فهرست خواهند شد. لازم به ذکر است که هر آنچه در ادامه می‌آید به نقل از مقالاتی است که قبل از سال 2000 میلادی تالیف شده‌اند.
-\\
-\\
-واژگان کلیدی: خطایابی نحوی، تجزیه‌ی نحوی، پردازش زبان طبیعی
+در این مقاله روشی برای محاسبه‌ی مکان، جهت و فاصله کانونی دوربین به صورت بلادرنگ بیان می‌شود. یکی از ویژگی‌های بدیع این مقاله استفاده از چندین تصویر برای بالا بردن دقت در مرحله‌ی تعیین مکان دوربین است. همچنین روشی خودکار برای آغاز پروسه‌ی دنبال‌کردن دوربین بیان می‌شود.
 
 \end{abstract}
 
-\section{مقدمه}
-سامانه‌های پردازش زبان طبیعی از کاربر انسانی ورودی می‌گیرند \LRE{in the name of god} و این ورودی ممکن است دچار خطا باشد. تشخیص این خطاها در سطوح زیر انجام می‌شود \cite{ct2}:
+\section{فرض‌های مسئله}
+در این بخش بعضی از فرضیات مسئله‌ای که قرار است در این مقاله حل شود مورد بررسی قرار می‌گیرد.
 \begin{itemize}
 \item
-خطایابی لغوی: واژه‌ها (غیر از اسمهای خاص) باید در فرهنگ لغات زبان موجود باشند.
+فرض شده است که، پارامتر‌های \lr{pan}، \lr{tilt} و \lr{zoom} به صورت بلادرنگ محاسبه می‌شوند.
 \item
-خطایابی نحوی: جمله باید با دستور زبان\LTRfootnote{Grammar} تطابق داشته باشد.
+همچنین، پارامترهای مکان دوربین، \lr{roll} و \lr{lens distortion} در طول زمان تغییر نمی‌کنند. دقت کنید که در این مقاله \lr{roll} صفر در نظر گرفته نشده است.
 \item
-خطایابی معنایی: جمله باید حداقل یک معنی صحیح داشته باشد.
+در این مقاله \lr{principal point} در وسط تصویر در نظر گرفته شده است. ضمنا از \lr{lens distortion} در این مسئله صرف نظر شده است.
 \item
-خطایابی کاربردی: جمله باید در بافت\LTRfootnote{Context} معنای صحیح بدهد.
+برای ورزش‌های مثل فوتبال که طول زمین ممکن است تغییر بکند، لازم است که به طور دقیق زمین اندازی گیری شود.
 \end{itemize}
-همانطور که گفته شد، خطایابی نحوی به معنی بررسی مطابقت میان جمله و دستور زبان است. از این رو تقریبا همه‌ی روشهای تشخیص و اصلاح خطاهای نحوی تلاش می‌کنند جمله را بر اساس دستور زبان تجزیه کنند و عدم موفقیت در تجزیه را به عنوان خطای نحوی گزارش می‌دهند. در طراحی این روشها سعی بر این است که جمله حتی اگر خطا داشته باشد، به درستی تجزیه شود تا خطای جمله دقیقا مشخص شده و قابل اصلاح باشد. در ادامه برای روشن شدن روشهای خطایابی نحوی، تجزیه‌ی نحوی را بررسی می‌کنیم.
+در این مقاله از دو مقاله‌ی دیگر ایده گرفته شده است و بهبود‌هایی روی آن‌ها انجام شده است. این مسئله بسیار برای من جالب بود. در ادامه این مسئله را توضیح خواهم داد.
+
+در این مقاله دو بخش اصلی وجود دارد. اول مقدار دهی اولیه \LTRfootnote{initialization} که از ایده‌ی مقاله \cite{ct16} استفاده شده است. دوم بخش دنبال کردن است که از ایده‌ی مقاله \cite{ct15} استفاده شده است. در بخش مقدار دهی اولیه و آغاز فرآیند دنبال کردن در \cite{ct16} از یک روش جستجوی خسته کننده \LTRfootnote{exhaustive} استفاده کرده است. این جستجو کند بوده و برای عملکرد بلادرنگ مناسب نمی‌باشد، در این مقاله بهبودی روی آن داده شده است که سرعت آن را تا ۱ ثانیه بالا می‌برد. در بخش دنبال کردن مقاله‌ی \cite{ct15} روشی بر اساس دنبال کردن خط مطرح شده است که در این مقاله تشخیص خط آن بهبود داده شده است.
+این نکته که ایده‌ی این مقاله کاملا در چند مقاله‌ی دیگر بوده است برای بنده جالب بود. در این مقاله عملا با ایده‌های خوب و به جا، توانسته یک سیستم مناسب برای واسنجی دوربین ارائه کند که توانسته در دو سامانه‌ی تجاری مورد استفاده قرار بگیرد.
 
 \section{تجزیه‌ی نحوی}
 تجزیه‌ی نحوی به معنی مشخص کردن نقش دستوری هر واژه در جمله است. حاصل تجزیه‌ی نحوی جمله، درختی مانند درخت نشان داده شده در شکل \ref{parsing} است. ریشه‌ی درخت نشانه‌ی کل جمله و برگهای درخت، واژه‌ها هستند.
@@ -241,52 +241,11 @@ C_{1}\&C_{2}\&...\&C_{n}\Rightarrow A_{1},A_{2},...,A_{m}
 \renewcommand*{\refname}{\section{منابع}}
 \begin{thebibliography}{9}
 \begin{latin}
-\bibitem{ct2}
-D. Jurafsky, and J. H. Martin, "Speech and language processing : an introduction to natural language processing, computational linguistics, and speech recognition", Upper Saddle River, N.J.: Prentice Hall, 2000.
-\bibitem{ct4}
-T. Vosse, "Detecting and correcting morpho-syntactic errors in real texts", in Proceedings of the third conference on Applied natural language processing, Trento, Italy, 1992, pp. 111-118.
-\bibitem{ct5}
-S. C. Kwasny, and N. K. Sondheimer, "Relaxation techniques for parsing grammatically III-formed input in Natural Language Understanding Systems", Comput. Linguist., vol. 7, no. 2, pp. 99-108, 1981.
-\bibitem{ct3}
-F. R. Bustamante, and F. S. Leon, "GramCheck: a grammar and style checker", in Proceedings of the 16th conference on Computational linguistics, Copenhagen, Denmark, 1996, pp. 175-181.
-\bibitem{ct6}
-Uszkoreit, and Hans, "Grammar Checking. Theory, Practice, and Lessons learned in LATESLAV", in Concluding oral presentation at the final review meeting of the LATESLAV Project, Prague, 1996.
-\bibitem{ct7}
-J.-P. Chanod, M. El-Beze, and S. Guillemin-Lanne, "Coupling an automatic dictation system with a grammar checker", in Proceedings of the 14th conference on Computational linguistics, Nantes, France, 1992, pp. 940-944.
-\bibitem{ct8}
-E. S. Atwell, "How to detect grammatical errors in a text without parsing it", in Proceedings of the third conference on European chapter of the Association for Computational Linguistics, Copenhagen, Denmark, 1987, pp. 38-45.
-\bibitem{ct9}
-C. S. Mellish, "Some chart-based techniques for parsing ill-formed input", in Proceedings of the 27th annual meeting on Association for Computational Linguistics, Vancouver, British Columbia, Canada, 1989, pp. 102-109.
-\bibitem{ct10}
-T. Kato, "Yet another chart-based technique for parsing ill-formed input", in Proceedings of the fourth conference on Applied natural language processing, Stuttgart, Germany, 1994, pp. 107-112.
-\bibitem{ct11}
-K. Min, and W. H. Wilson, "Integrated Correction of Ill-Formed Sentences", in Proceedings of the 10th Australian Joint Conference on Artificial Intelligence: Advanced Topics in Artificial Intelligence, 1997, pp. 369-378.
-\bibitem{ct12}
-K. Min, and W. H. Wilson, "Are Efficient Natural Language Parsers Robust?", in Eighth Australian Joint Conference on Artificial Intelligence, 1995, pp. 283-290.
-\bibitem{ct13}
-R. M. Weischedel, and N. K. Sondheimer, "Meta-rules as a basis for processing ill-formed input", Comput. Linguist., vol. 9, no. 3-4, pp. 161-177, 1983.
-\bibitem{ct14}
-W. A. Woods, "Transition network grammars for natural language analysis", Commun. ACM, vol. 13, no. 10, pp. 591-606, 1970.
-\bibitem{ct1}
-J. G. Carbonell, and P. J. Hayes, "Recovery strategies for parsing extragrammatical language", Comput. Linguist., vol. 9, no. 3-4, pp. 123-146, 1983.
 \bibitem{ct15}
-M. Carl, and A. Schmidt-Wigger, "Shallow post morphological processing with KURD", in Proceedings of the Joint Conferences on New Methods in Language Processing and Computational Natural Language Learning, Sydney, Australia, 1998, pp. 257-265.
+L. Vacchetti, V. Lepetit, P. Fua: Combining edge and texture information for real-time accurate 3d camera tracking. International Symposium on Mixed and Augmented Reality, pp 48-56, 2004
 \bibitem{ct16}
-K. Oliva, "Techniques for accelerating a grammar-checker", in Proceedings of the fifth conference on Applied natural language processing, Washington, DC, 1997, pp. 155-158.
-\bibitem{ct17}
-K. Knight, and I. Chander, "Automated postediting of documents", in Proceedings of the twelfth national conference on Artificial intelligence, Seattle, Washington, United States, 1994, pp. 779-784.
-\bibitem{ct18}
-P. J. Hayes, and J. G. Carbonell, "Multi-strategy construction-specific parsing for flexible data base query and update", in Proceedings of the 7th international joint conference on Artificial intelligence - Volume 1, Vancouver, BC, Canada, 1981, pp. 432-439.
-\bibitem{ct19}
-R. H. Granger, "The NOMAD system: expectation-based detection and correction of errors during understanding of syntactically and semantically ill-formed text", Comput. Linguist., vol. 9, no. 3-4, pp. 188-196, 1983.
-\bibitem{ct20}
-D. Genthial, J. Courtin, and J. Menezo, "Towards a more user-friendly correction", in Proceedings of the 15th conference on Computational linguistics, Kyoto, Japan, 1994, pp. 1083-1088.
-\bibitem{ct21}
-V. Kubon, and M. Platek, "A grammar based approach to a grammar checking of free word order languages", in Proceedings of the 15th conference on Computational linguistics, Kyoto, Japan, 1994, pp. 906-910.
-\bibitem{ct22}
-A. S. Hein, "A chart-based framework for grammar checking. initial studies", in 11th Nordic Conference in Computational Linguistic, 1998, pp. 68–80.
-\bibitem{ct23}
-A. Schmidt-Wigger, "Grammar and style checking for German."
+T. Watanabe, M. Haseyama, H. Kitajima: A soccer field tracking method with wire frame model from TV images. International Conference on Image Processing, pp 1633-1636, 2004
+
 \end{latin}
 \end{thebibliography}
 
