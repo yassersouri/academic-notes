@@ -32,7 +32,9 @@
 %\begin{textblock*}{15cm}(0cm,-8cm)\centering به نام خدا \end{textblock*}
 
 \begin{abstract}
-در این مقاله روشی برای بدست آوردن ماتریس هوموگرافی برای تصاویر ورزشی که مدل زمین آن‌ها را می‌دانیم بیان شده است.
+در این مقاله روشی برای بدست آوردن ماتریس هوموگرافی بین زمین و تصویر دوربین، برای تصاویر ورزشی که مدل زمین آن‌ها را می‌دانیم بیان شده است. مانند بسیاری از مقالات دیگر این مقاله یک مرحله مقدار دهی اولیه برای پارامترهای دوربین دارد و بعد از آن برای هر فریم جدید، دوربین را دنبال  می‌کند\LTRfootnote{tracking}. همچنین فرض شده است که مدل زمین شامل حداقل دو خط افقی موازی و دو خط عمودی موازی است. برای همین الگوریتم برای تصاویر مرکز زمین فوتبال پاسخ‌گو نیست. از دیگر فرضیات مهم این مقاله ثابت بودن مکان و \lr{lens distortion} دوربین در طول گذر زمان است.
+\\
+لازم به ذکر است که نویسنده این مقاله، در سال بعد ورژن بعدی راه حلش را در مقاله‌ای دیگری چاپ کرده است\cite{new_paper}. 
 
 \end{abstract}
 
@@ -40,15 +42,10 @@
 در این بخش بعضی از فرضیات مسئله‌ای که قرار است در این مقاله حل شود مورد بررسی قرار می‌گیرد.
 \begin{itemize}
 \item
-فرض شده است که، پارامتر‌های \lr{pan}، \lr{tilt} و \lr{zoom} به صورت بلادرنگ محاسبه می‌شوند.
+فرض شده است که، پارامتر‌های هشتگانه ماتریس هوموگرافی بین زمین و تصویر دوربین را بدست می‌آوریم، ولی پارامترهای \lr{pan}، \lr{tilt} و \lr{zoom} به صورت مجزا محاسبه نمی‌شوند.
 \item
-همچنین، پارامترهای مکان دوربین، \lr{roll} و \lr{lens distortion} در طول زمان تغییر نمی‌کنند. دقت کنید که در این مقاله \lr{roll} صفر در نظر گرفته نشده است.
+همچنین، پارامترهای مکان دوربین، \lr{roll} و \lr{lens distortion} در طول زمان تغییر نمی‌کنند.
 \item
-در این مقاله \lr{principal point} در وسط تصویر در نظر گرفته شده است. ضمنا از \lr{lens distortion} در این مسئله صرف نظر شده است.
-\item
-برای ورزش‌های مثل فوتبال که طول زمین ممکن است تغییر بکند، لازم است که به طور دقیق زمین اندازی گیری شود.
-\item
-برخی از این فرض‌ها، باعث کاهش دقت واسنجی خواهد شد. البته با این کاهش هنوز دقت واسنجی به اندازه‌ای هست که برای ورزشی مثل فوتبال مناسب باشد.
 \end{itemize}
 \subsection{ایده گرفتن از مقالات دیگر}
 در این مقاله از دو مقاله‌ی دیگر ایده گرفته شده است و بهبود‌هایی روی آن‌ها انجام شده است. این مسئله بسیار برای من جالب بود. در ادامه این ایده‌گیری را توضیح خواهم داد.
@@ -102,14 +99,11 @@
 
 \renewcommand{\baselinestretch}{1}
 \renewcommand*{\refname}{\section{منابع}}
-\begin{thebibliography}{9}
+
 \begin{latin}
-\bibitem{ct15}
-L. Vacchetti, V. Lepetit, P. Fua: Combining edge and texture information for real-time accurate 3d camera tracking. International Symposium on Mixed and Augmented Reality, pp 48-56, 2004
-\bibitem{ct16}
-T. Watanabe, M. Haseyama, H. Kitajima: A soccer field tracking method with wire frame model from TV images. International Conference on Image Processing, pp 1633-1636, 2004
+\bibliography{court_model_bib}{}
+\bibliographystyle{plain}
 
 \end{latin}
-\end{thebibliography}
 
 \end{document}
